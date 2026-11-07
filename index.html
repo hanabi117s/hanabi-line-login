@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>華灯〜HANABI〜</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body style="font-family:sans-serif;text-align:center;padding:40px 15px;">
+  <h2>華灯〜HANABI〜</h2>
+  <p id="status">LINE認証を確認しています...</p>
+
+  <script>
+    async function start() {
+      const status = document.getElementById('status');
+
+      try {
+        await liff.init({
+          liffId: '2012319110-unAP6Rum'
+        });
+
+        if (liff.isLoggedIn()) {
+          status.textContent = 'LINEログイン成功！';
+        } else {
+          status.textContent =
+            'LINEログインが必要です。';
+        }
+      } catch (error) {
+        status.textContent =
+          'エラー：' + error.message;
+      }
+    }
+
+    start();
+  </script>
+</body>
+</html>
