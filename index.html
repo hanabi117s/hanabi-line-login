@@ -21,12 +21,21 @@
           liffId: '2012319110-unAP6Rum'
         });
 
-        if (liff.isLoggedIn()) {
-          status.textContent = 'LINEログイン成功！';
-        } else {
-          status.textContent =
-            'LINEログインが必要です。';
-        }
+      
+if (!liff.isLoggedIn()) {
+  if (!liff.isInClient()) {
+    status.textContent = 'LINEログイン中...';
+    liff.login();
+    return;
+  }
+
+  status.textContent =
+    'LINEのログイン状態を取得できませんでした。';
+  return;
+}
+
+status.textContent = 'LINEログイン成功！';
+
       } catch (error) {
         status.textContent =
           'エラー：' + error.message;
